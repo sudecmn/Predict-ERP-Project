@@ -9,5 +9,5 @@ def get_suppliers_list():
 def get_supplier(supplier_id: str):
     row = fetch_supplier_by_id(supplier_id)
     if row is None:
-        raise ValueError("Tedarikçi bulunamadı.")
+        raise ValueError("Supplier not found.")
     return dict(row)

@@ -8,10 +8,13 @@ def get_inventory_list():
 
 
 def inbound_stock(product_name: str, quantity: int):
+    if quantity <= 0:
+        raise ValueError("Quantity must be greater than zero.")
+
     add_stock(product_name, quantity)
     create_movement(product_name, quantity, "IN")
     return {
-        "message": "Stok başarıyla artırıldı.",
+        "message": "Stock increased successfully.",
         "product_name": product_name,
         "quantity": quantity,
         "operation": "IN",
@@ -19,10 +22,13 @@ def inbound_stock(product_name: str, quantity: int):
 
 
 def outbound_stock(product_name: str, quantity: int):
+    if quantity <= 0:
+        raise ValueError("Quantity must be greater than zero.")
+
     remove_stock(product_name, quantity)
     create_movement(product_name, quantity, "OUT")
     return {
-        "message": "Stok başarıyla azaltıldı.",
+        "message": "Stock decreased successfully.",
         "product_name": product_name,
         "quantity": quantity,
         "operation": "OUT",
